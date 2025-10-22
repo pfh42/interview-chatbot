@@ -1,8 +1,6 @@
 import streamlit as st
 from streamlit_js_eval import streamlit_js_eval
 from openai import OpenAI
-import os
-import dotenv
 
 # Deploy Streamlit app configuration: https://share.streamlit.io/
 
