@@ -63,10 +63,6 @@ if not st.session_state.setup_complete:
         st.write('Setup complete! Starting interview...')
     
 if st.session_state.setup_complete and not st.session_state.feedback_shown and not st.session_state.chat_complete: # Main chat interface
-    # Load API key from .env file
-    dotenv_file = ".env"
-    file_path = next((os.path.join(root, dotenv_file) for root, dirs, files in os.walk("/") if dotenv_file in files), None)
-    dotenv.load_dotenv(file_path)
 
     st.info(
         '''
@@ -127,7 +123,7 @@ if st.session_state.feedback_shown:
 
     conversation_history = "\n".join([f"{msg['role']}: {msg['content']}" for msg in st.session_state.messages])
 
-    feedback_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    feedback_client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"]) # for remote hosting on share.streamlit.io
 
     feedback_completion = feedback_client.chat.completions.create(
         model='gpt-4o',
