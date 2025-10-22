@@ -4,6 +4,8 @@ from openai import OpenAI
 import os
 import dotenv
 
+# Deploy Streamlit app configuration: https://share.streamlit.io/
+
 st.set_page_config(page_title="Chat with OpenAI", page_icon=":robot:")
 st.title("HR Interview Chatbot :robot:")
 
@@ -73,7 +75,8 @@ if st.session_state.setup_complete and not st.session_state.feedback_shown and n
 Start by introducing yourself.
 ''', icon="💡")
 
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    # client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"]) # for remote hosting on share.streamlit.io
 
     # Session state for OpenAI model selection
     if "openai_model" not in st.session_state:
