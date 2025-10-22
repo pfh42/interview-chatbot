@@ -1,5 +1,4 @@
 streamlit
 openai
-os
 streamlit-js-eval
 dotenv
